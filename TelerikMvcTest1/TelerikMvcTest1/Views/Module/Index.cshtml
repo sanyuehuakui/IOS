@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TelerikMvcTest1.Models.ModuleDB.Module>
+
+@{
+    ViewBag.Title = "Module Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-18 col-md-12">
+            @(Html.Kendo().Grid(Model).Name("Grid").Columns
+        (columns =>
+        {
+            columns.Bound(p => p.ModuleCode).Title("Module Code").Width(130);
+            columns.Bound(p => p.ModuleName).Title("Module Name");
+            columns.Bound(p => p.Status).Title("Status").Width(130);
+            columns.Bound(p => p.CreateDate).Format("{0:MM/dd/yyyy}").Width(200);
+            columns.Bound(p => p.ModifiedDate).Format("{0:MM/dd/yyyy}").Width(200);
+            columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+
+        })
+    .ToolBar(toolbar => toolbar.Create())
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .HtmlAttributes(new { style = "height: 550px;" })
+    .Pageable(pageable => pageable
+       .Input(true)
+       .Numeric(false)
+     )
+    .Sortable()
+    .Scrollable(scr => scr.Height(430))
+    .Filterable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .ServerOperation(false)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.ModuleId))
+        .Create(update => update.Action("Create", "Module"))
+        .Read(read => read.Action("Read", "Module"))
+        .Update(update => update.Action("Update", "Module"))
+        .Destroy(update => update.Action("Delete", "Module"))
+     )
+            )
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>

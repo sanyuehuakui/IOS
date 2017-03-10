@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CSADemoDBModelStoreContainer" CdmEntityContainer="CSADBEntities">
+    <EntitySetMapping Name="Modules">
+      <EntityTypeMapping TypeName="CSADemoDBModel.Module">
+        <MappingFragment StoreEntitySet="Module">
+          <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+          <ScalarProperty Name="ModuleCode" ColumnName="ModuleCode" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
